@@ -1,0 +1,9 @@
+.progress/*.json
+data/auth/.htpasswd
+.credentials/
+backend/.venv/
+backend/.pytest_cache/
+backend/**/__pycache__/
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/

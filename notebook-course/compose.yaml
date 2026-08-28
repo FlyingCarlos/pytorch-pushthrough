@@ -1,0 +1,23 @@
+name: pytorch-pushthrough
+
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    volumes:
+      - ./data/progress:/app/.progress
+
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "0.0.0.0:5173:80"
+    volumes:
+      - ./data/auth/.htpasswd:/etc/nginx/.htpasswd:ro
